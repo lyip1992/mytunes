@@ -2,10 +2,17 @@
 var SongQueue = Songs.extend({
 
   initialize: function(){
+
+
+
+    // when we enqueue something, we want to check if current song is set to something
+    // if it isn't set to anything, then play the song that we just enqueued
+    // else keep on playing the current song but queue the one that was just clicked
+    // when the current song ends, then play the first song in the queue and dequeue that song from the list
   },
 
   playFirst: function(){
-
+    this.at(0).play();
   }
 
 });

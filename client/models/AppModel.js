@@ -19,15 +19,24 @@ var AppModel = Backbone.Model.extend({
 
     params.library.on('enqueue', function(song){
       this.get('songQueue').add(song); // when something is added, it is pushed
+
+      if ( !this.get('currentSong').attributes.collection ) { // if the current song isn't set, play the first song in the queue
+        this.get('songQueue').at(0).play();
+      }
     }, this); // working -> LibraryEntryView
 
     params.library.on('dequeue', function(song){
       this.get('songQueue').remove(song);
+
+      if( this.get('songQueue').at(0) ) {
+        this.get('songQueue').playFirst();
+      }
     }, this);
 
-    // ended
-    //
-    // dequeue
+    params.library.on('ended', function() {
+
+    }, this);
+
   }
 
 });
