@@ -3,7 +3,10 @@ var SongQueue = Songs.extend({
 
   initialize: function(){
 
-
+    this.on('add', function() {
+      if(this.length === 1)
+      this.playFirst();
+    },this);
 
     // when we enqueue something, we want to check if current song is set to something
     // if it isn't set to anything, then play the song that we just enqueued
@@ -11,8 +14,11 @@ var SongQueue = Songs.extend({
     // when the current song ends, then play the first song in the queue and dequeue that song from the list
   },
 
+
   playFirst: function(){
-    this.at(0).play();
+    if(this.at(0)){
+      this.at(0).play();
+    }
   }
 
 });
