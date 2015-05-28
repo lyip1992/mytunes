@@ -19,7 +19,11 @@ var AppModel = Backbone.Model.extend({
 
     params.library.on('enqueue', function(song){
       this.get('songQueue').add(song); // when something is added, it is pushed
-   }, this); // working -> LibraryEntryView
+    }, this); // working -> LibraryEntryView
+
+    params.library.on('dequeue', function(song){
+      this.get('songQueue').remove(song);
+    }, this);
 
     // ended
     //
